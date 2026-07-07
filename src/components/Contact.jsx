@@ -29,15 +29,17 @@ const Contact = () => {
     const { name, contactInfo, subject, message, method } = formData;
 
     try {
-      // Send via Formspree — delivers straight to kelvinmainahh@gmail.com
-      const response = await fetch('https://formspree.io/f/xdkownpg', {
+      // Send via Web3Forms — delivers directly to kelvinmainahh@gmail.com
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
+          access_key: '54b90917-0ac0-48d5-9f3d-145d49fd3bb8',
           name,
-          _replyto: contactInfo,
+          email: contactInfo,
           subject: `[${method.toUpperCase()} via Portfolio] ${subject}`,
           message: `From: ${name}\nContact: ${contactInfo}\nPreferred Method: ${method}\n\n${message}`,
+          from_name: 'Maina Kelvin Consultancy Portfolio',
         }),
       });
 
